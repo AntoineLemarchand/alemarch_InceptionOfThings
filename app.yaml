@@ -6,20 +6,18 @@ kind: Deployment
 metadata:
   name: wil-playground
   namespace: dev
-  labels:
-    app: wil-playground
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: wil-playground
+  replicas: 1
   template:
     metadata:
       labels:
         app: wil-playground
     spec:
       containers:
-      - name: playground
+      - name: wil-playground
         image: wil42/playground:v2
         ports:
           - containerPort: 8888
@@ -31,9 +29,9 @@ metadata:
   name: wil-playground
   namespace: dev
 spec:
-  type: LoadBalancer
   selector:
     app: wil-playground
   ports:
   - port: 8888
     targetPort: 8888
+  type: LoadBalancer
